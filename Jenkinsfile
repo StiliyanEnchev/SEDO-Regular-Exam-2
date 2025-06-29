@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        pollSCM('* * * * *') 
+        pollSCM('* * * * *') // Poll every 1 minute
     }
 
     stages {
@@ -15,6 +15,12 @@ pipeline {
         stage('Setup .NET SDK') {
             steps {
                 bat 'dotnet --version'
+            }
+        }
+
+        stage('Restore') {
+            steps {
+                bat 'dotnet restore'
             }
         }
 
